@@ -1,0 +1,25 @@
+﻿<ContentDialog
+    x:Class="CarmineCrystal.DnDigital.Client.ConnectionDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CarmineCrystal.DnDigital.Client"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:remotesystems="using:Windows.System.RemoteSystems"
+	mc:Ignorable="d"
+    Title="Select server device"
+    PrimaryButtonText="Select"
+    SecondaryButtonText="Cancel"
+    PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
+    SecondaryButtonClick="ContentDialog_SecondaryButtonClick">
+
+	<ListView ItemsSource="{Binding Devices, Mode=OneWay}" SelectedItem="{Binding SelectedSystem, Mode=TwoWay}">
+		<ListView.ItemTemplate>
+			<DataTemplate x:DataType="remotesystems:RemoteSystem">
+				<StackPanel>
+					<TextBlock Text="{Binding DisplayName}"/>
+				</StackPanel>
+			</DataTemplate>
+		</ListView.ItemTemplate>
+	</ListView>
+</ContentDialog>
