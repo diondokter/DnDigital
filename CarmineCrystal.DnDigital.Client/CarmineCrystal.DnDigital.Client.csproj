@@ -161,7 +161,7 @@
       <Project>{3C1DEBDE-D837-4CE8-87B0-2ED34325A35F}</Project>
       <Name>CarmineCrystal.DnDigital.Datamodels</Name>
     </ProjectReference>
-    <ProjectReference Include="..\CarmineCrystal.DnDigital.Networking\CarmineCrystal.Networking.csproj">
+    <ProjectReference Include="..\CarmineCrystal.Networking\CarmineCrystal.Networking.csproj">
       <Project>{A2FE0096-9EBA-4CB5-9CDB-B75064690BFD}</Project>
       <Name>CarmineCrystal.Networking</Name>
     </ProjectReference>

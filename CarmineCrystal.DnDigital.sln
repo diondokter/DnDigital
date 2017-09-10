@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.26730.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarmineCrystal.DnDigital.Client", "CarmineCrystal.DnDigital.Client\CarmineCrystal.DnDigital.Client.csproj", "{BBB47A47-B02A-45AB-BD47-5A5CF7214770}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarmineCrystal.Networking", "CarmineCrystal.DnDigital.Networking\CarmineCrystal.Networking.csproj", "{A2FE0096-9EBA-4CB5-9CDB-B75064690BFD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarmineCrystal.Networking", "CarmineCrystal.Networking\CarmineCrystal.Networking.csproj", "{A2FE0096-9EBA-4CB5-9CDB-B75064690BFD}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarmineCrystal.DnDigital.Datamodels", "CarmineCrystal.DnDigital.Datamodels\CarmineCrystal.DnDigital.Datamodels.csproj", "{3C1DEBDE-D837-4CE8-87B0-2ED34325A35F}"
 EndProject
