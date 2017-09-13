@@ -7,12 +7,12 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-	<ScrollViewer ZoomMode="Enabled" MaxZoomFactor="8" MinZoomFactor="0.5" HorizontalScrollMode="Enabled" VerticalScrollMode="Enabled" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
+	<ScrollViewer x:Name="Scroller" ZoomMode="Enabled" MaxZoomFactor="8" MinZoomFactor="0.5" HorizontalScrollMode="Enabled" VerticalScrollMode="Enabled" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" ViewChanging="OnScrollerViewChanging">
 		<Grid Background="LightGray"  MinWidth="5000" MinHeight="5000">
 
 			<local:AlignmentGrid StepSize="10" LineBrush="DimGray"/>
-			<InkCanvas/>
-			<Canvas/>
+			<InkCanvas x:Name="DrawCanvas"/>
+			<Canvas x:Name="ArrangementCanvas"/>
 			
 		</Grid>
 	</ScrollViewer>

@@ -29,7 +29,7 @@ namespace CarmineCrystal.DnDigital.Client
 		{
 			base.OnNavigatedTo(e);
 
-			//Server = new NetworkClient(((ClientPageParameters)e.Parameter).Hostname, 5000);
+			Server = new NetworkClient(((ClientPageParameters)e.Parameter).Hostname, 5000);
 		}
 
 		public class ClientPageParameters
