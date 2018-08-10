@@ -8,6 +8,42 @@
     mc:Ignorable="d">
 
 	<Grid Background="{ThemeResource SystemChromeLowColor}">
-		<local:Board/>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="auto"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+
+		<StackPanel Orientation="Horizontal" Background="{ThemeResource SystemChromeLowColor}">
+			<Button Margin="5" Width="200">
+				<StackPanel Orientation="Horizontal">
+					<Image Margin="-5, -2, 0, -2" Source="Assets/Logo.png" Width="40"/>
+					<TextBlock Margin="5,0,0,0" Text="Configure" VerticalAlignment="Center"/>
+				</StackPanel>
+
+				<Button.Flyout>
+					<Flyout x:Name="ConfigureFlyout">
+						<StackPanel Width="175">
+							<Button Margin="5" HorizontalAlignment="Stretch" Content="Add Character" Click="OnAddCharacterButtonClick"/>
+							<Button Margin="5" HorizontalAlignment="Stretch" Content="Remove Chracter" Click="OnRemoveCharacterButtonClick"/>
+						</StackPanel>
+					</Flyout>
+				</Button.Flyout>
+			</Button>
+
+			<ToggleSwitch Header="Freeze screen" OffContent="Disabled" OnContent="Enabled" Toggled="OnFreezeSwitchToggled"/>
+			<ToggleSwitch Header="Select Mode" OffContent="Manipulation" OnContent="Drawing" IsOn="{Binding InDrawingMode, Mode=TwoWay}"/>
+
+			<StackPanel Margin="5,0" Orientation="Horizontal" Visibility="{Binding DrawingModeVisibility, Mode=OneWay}">
+				<Button Margin="5" VerticalAlignment="Stretch" Content="Undo" Click="RemoveLastLineButtonClick"/>
+				<InkToolbar x:Name="InkTools" Margin="5" VerticalAlignment="Stretch"/>
+			</StackPanel>
+			
+			<StackPanel Margin="5,0" Orientation="Horizontal" Visibility="{Binding ManipulationModeVisibility, Mode=OneWay}">
+				<ToggleSwitch Header="Object lock" OffContent="Disabled" OnContent="Enabled" IsOn="{Binding ObjectLock, Mode=TwoWay}"/>
+			</StackPanel>
+
+		</StackPanel>
+		
+		<local:Board x:Name="PlayBoard" Grid.Row="1"/>
 	</Grid>
 </Page>

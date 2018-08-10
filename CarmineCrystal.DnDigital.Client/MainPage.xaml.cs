@@ -24,7 +24,7 @@ namespace CarmineCrystal.DnDigital.Client
 
 		private void OnPlayMasterButtonClick(object sender, RoutedEventArgs e)
 		{
-
+			this.Frame.Navigate(typeof(MasterPage));
 		}
 
 		private async void OnPlayClientButtonClick(object sender, RoutedEventArgs e)

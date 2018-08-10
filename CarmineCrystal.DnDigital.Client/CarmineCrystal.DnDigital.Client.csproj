@@ -11,13 +11,21 @@
     <AssemblyName>CarmineCrystal.DnDigital.Client</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
-    <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.15063.0</TargetPlatformVersion>
-    <TargetPlatformMinVersion>10.0.10586.0</TargetPlatformMinVersion>
+    <TargetPlatformVersion>10.0.16299.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.14393.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WindowsXamlEnableOverview>true</WindowsXamlEnableOverview>
     <PackageCertificateKeyFile>CarmineCrystal.DnDigital.Client_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
+    <AppxPackageDir>C:\Users\diond\Desktop\New folder\</AppxPackageDir>
+    <AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
+    <AppxBundle>Auto</AppxBundle>
+    <AppxBundlePlatforms>x86</AppxBundlePlatforms>
+    <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
+    <AppInstallerUpdateFrequency>1</AppInstallerUpdateFrequency>
+    <AppInstallerCheckForUpdateFrequency>OnApplicationRun</AppInstallerCheckForUpdateFrequency>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -92,11 +100,17 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="AddCharacterDialog.xaml.cs">
+      <DependentUpon>AddCharacterDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Board.xaml.cs">
       <DependentUpon>Board.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CharacterView.xaml.cs">
+      <DependentUpon>CharacterView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ClientPage.xaml.cs">
       <DependentUpon>ClientPage.xaml</DependentUpon>
@@ -104,6 +118,7 @@
     <Compile Include="ConnectionDialog.xaml.cs">
       <DependentUpon>ConnectionDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Extentions.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -112,6 +127,10 @@
       <DependentUpon>MasterPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RemoveCharacterDialog.xaml.cs">
+      <DependentUpon>RemoveCharacterDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UIElementExtentions.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -120,6 +139,100 @@
     <None Include="CarmineCrystal.DnDigital.Client_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Character Visuals\Aarakocras\01.png" />
+    <Content Include="Assets\Character Visuals\Aarakocras\02.png" />
+    <Content Include="Assets\Character Visuals\Aarakocras\03.png" />
+    <Content Include="Assets\Character Visuals\Aarakocras\04.png" />
+    <Content Include="Assets\Character Visuals\Aarakocras\05.png" />
+    <Content Include="Assets\Character Visuals\Aarakocras\06.png" />
+    <Content Include="Assets\Character Visuals\Aarakocras\07.png" />
+    <Content Include="Assets\Character Visuals\Aarakocras\08.png" />
+    <Content Include="Assets\Character Visuals\Bugbears\01.png" />
+    <Content Include="Assets\Character Visuals\Bugbears\02.png" />
+    <Content Include="Assets\Character Visuals\Bugbears\03.png" />
+    <Content Include="Assets\Character Visuals\Bugbears\04.png" />
+    <Content Include="Assets\Character Visuals\Bugbears\05.png" />
+    <Content Include="Assets\Character Visuals\Bugbears\06.png" />
+    <Content Include="Assets\Character Visuals\Bugbears\07.png" />
+    <Content Include="Assets\Character Visuals\Bugbears\08.png" />
+    <Content Include="Assets\Character Visuals\CarmineCrystal\Aeruun Crusher.png" />
+    <Content Include="Assets\Character Visuals\CarmineCrystal\Felix Johnson.png" />
+    <Content Include="Assets\Character Visuals\Elves\01.png" />
+    <Content Include="Assets\Character Visuals\Elves\02.png" />
+    <Content Include="Assets\Character Visuals\Elves\03.png" />
+    <Content Include="Assets\Character Visuals\Elves\04.png" />
+    <Content Include="Assets\Character Visuals\Elves\05.png" />
+    <Content Include="Assets\Character Visuals\Elves\06.png" />
+    <Content Include="Assets\Character Visuals\Elves\07.png" />
+    <Content Include="Assets\Character Visuals\Elves\08.png" />
+    <Content Include="Assets\Character Visuals\Goblins\01.png" />
+    <Content Include="Assets\Character Visuals\Goblins\02.png" />
+    <Content Include="Assets\Character Visuals\Goblins\03.png" />
+    <Content Include="Assets\Character Visuals\Goblins\04.png" />
+    <Content Include="Assets\Character Visuals\Goblins\05.png" />
+    <Content Include="Assets\Character Visuals\Goblins\06.png" />
+    <Content Include="Assets\Character Visuals\Goblins\07.png" />
+    <Content Include="Assets\Character Visuals\Goblins\08.png" />
+    <Content Include="Assets\Character Visuals\Mephits\01.png" />
+    <Content Include="Assets\Character Visuals\Mephits\02.png" />
+    <Content Include="Assets\Character Visuals\Mephits\03.png" />
+    <Content Include="Assets\Character Visuals\Mephits\04.png" />
+    <Content Include="Assets\Character Visuals\Mephits\05.png" />
+    <Content Include="Assets\Character Visuals\Mephits\06.png" />
+    <Content Include="Assets\Character Visuals\Mephits\07.png" />
+    <Content Include="Assets\Character Visuals\Mephits\08.png" />
+    <Content Include="Assets\Character Visuals\Nothics\01.png" />
+    <Content Include="Assets\Character Visuals\Nothics\02.png" />
+    <Content Include="Assets\Character Visuals\Nothics\03.png" />
+    <Content Include="Assets\Character Visuals\Nothics\04.png" />
+    <Content Include="Assets\Character Visuals\Nothics\05.png" />
+    <Content Include="Assets\Character Visuals\Nothics\06.png" />
+    <Content Include="Assets\Character Visuals\Nothics\07.png" />
+    <Content Include="Assets\Character Visuals\Nothics\08.png" />
+    <Content Include="Assets\Character Visuals\Rogues\01.png" />
+    <Content Include="Assets\Character Visuals\Rogues\02.png" />
+    <Content Include="Assets\Character Visuals\Rogues\03.png" />
+    <Content Include="Assets\Character Visuals\Rogues\04.png" />
+    <Content Include="Assets\Character Visuals\Rogues\05.png" />
+    <Content Include="Assets\Character Visuals\Rogues\06.png" />
+    <Content Include="Assets\Character Visuals\Rogues\07.png" />
+    <Content Include="Assets\Character Visuals\Rogues\08.png" />
+    <Content Include="Assets\Character Visuals\Skeletons\01.png" />
+    <Content Include="Assets\Character Visuals\Skeletons\02.png" />
+    <Content Include="Assets\Character Visuals\Skeletons\03.png" />
+    <Content Include="Assets\Character Visuals\Skeletons\04.png" />
+    <Content Include="Assets\Character Visuals\Skeletons\05.png" />
+    <Content Include="Assets\Character Visuals\Skeletons\06.png" />
+    <Content Include="Assets\Character Visuals\Skeletons\07.png" />
+    <Content Include="Assets\Character Visuals\Skeletons\08.png" />
+    <Content Include="Assets\Character Visuals\Soldiers\01.png" />
+    <Content Include="Assets\Character Visuals\Soldiers\02.png" />
+    <Content Include="Assets\Character Visuals\Soldiers\03.png" />
+    <Content Include="Assets\Character Visuals\Soldiers\04.png" />
+    <Content Include="Assets\Character Visuals\Soldiers\05.png" />
+    <Content Include="Assets\Character Visuals\Soldiers\06.png" />
+    <Content Include="Assets\Character Visuals\Soldiers\07.png" />
+    <Content Include="Assets\Character Visuals\Soldiers\08.png" />
+    <Content Include="Assets\Character Visuals\Wolves\01.png" />
+    <Content Include="Assets\Character Visuals\Wolves\02.png" />
+    <Content Include="Assets\Character Visuals\Wolves\03.png" />
+    <Content Include="Assets\Character Visuals\Wolves\04.png" />
+    <Content Include="Assets\Character Visuals\Wolves\05.png" />
+    <Content Include="Assets\Character Visuals\Wolves\06.png" />
+    <Content Include="Assets\Character Visuals\Wolves\07.png" />
+    <Content Include="Assets\Character Visuals\Wolves\08.png" />
+    <Content Include="Assets\Logo.png" />
+    <Content Include="Assets\Objects\Ships\AnneShip-100.png" />
+    <Content Include="Assets\Objects\Ships\Corvette Visuals Inside.png" />
+    <Content Include="Assets\Objects\Ships\Corvette Visuals Outside.png" />
+    <Content Include="Assets\Objects\Ships\Escape Pod Visuals Inside.png" />
+    <Content Include="Assets\Objects\Ships\Escape Pod Visuals Outside.png" />
+    <Content Include="Assets\Objects\Ships\Freighter Visuals Intside.png" />
+    <Content Include="Assets\Objects\Ships\Freighter Visuals Outside.png" />
+    <Content Include="Assets\Objects\Ships\Phoenix Visuals Inside.png" />
+    <Content Include="Assets\Objects\Ships\Phoenix Visuals Outside.png" />
+    <Content Include="Assets\Objects\Ships\Transporter Visuals Inside.png" />
+    <Content Include="Assets\Objects\Ships\Transporter Visuals Outside.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -134,7 +247,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="AddCharacterDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Board.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CharacterView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -154,6 +275,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="RemoveCharacterDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
@@ -168,11 +293,16 @@
       <Project>{3C1DEBDE-D837-4CE8-87B0-2ED34325A35F}</Project>
       <Name>CarmineCrystal.DnDigital.Datamodels</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CarmineCrystal.DnDigital.Messages\CarmineCrystal.DnDigital.Messages.csproj">
+      <Project>{0A880FD4-12CF-4562-85C2-0442380EF938}</Project>
+      <Name>CarmineCrystal.DnDigital.Messages</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CarmineCrystal.Networking\CarmineCrystal.Networking.csproj">
       <Project>{A2FE0096-9EBA-4CB5-9CDB-B75064690BFD}</Project>
       <Name>CarmineCrystal.Networking</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

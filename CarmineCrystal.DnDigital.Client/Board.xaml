@@ -7,12 +7,23 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-	<ScrollViewer x:Name="Scroller" ZoomMode="Enabled" MaxZoomFactor="8" MinZoomFactor="0.5" HorizontalScrollMode="Enabled" VerticalScrollMode="Enabled" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" ViewChanging="OnScrollerViewChanging">
-		<Grid Background="LightGray"  MinWidth="5000" MinHeight="5000">
+	<ScrollViewer x:Name="Scroller"
+				  ZoomMode="Enabled"
+				  MaxZoomFactor="15" MinZoomFactor="0.25"
+				  HorizontalScrollMode="Enabled"
+				  VerticalScrollMode="Enabled"
+				  HorizontalScrollBarVisibility="Visible"
+				  VerticalScrollBarVisibility="Visible"
+				  IsHitTestVisible="{Binding InManipulationMode, Mode=OneWay}">
+		
+		<Grid Background="LightGray"  MinWidth="10000" MinHeight="10000">
 
-			<local:AlignmentGrid StepSize="10" LineBrush="DimGray"/>
+			<local:AlignmentGrid StepSize="10"
+								 LineBrush="DimGray"
+								 IsHitTestVisible="False"/>
 			<InkCanvas x:Name="DrawCanvas"/>
-			<Canvas x:Name="ArrangementCanvas"/>
+			<Canvas x:Name="ArrangementCanvas"
+					IsHitTestVisible="{Binding InManipulationMode, Mode=OneWay}"/>
 			
 		</Grid>
 	</ScrollViewer>

@@ -5,7 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CarmineCrystal.DnDigital.Networking\CarmineCrystal.Networking.csproj" />
+    <ProjectReference Include="..\CarmineCrystal.DnDigital.Datamodels\CarmineCrystal.DnDigital.Datamodels.csproj" />
+    <ProjectReference Include="..\CarmineCrystal.Networking\CarmineCrystal.Networking.csproj" />
   </ItemGroup>
 
 </Project>

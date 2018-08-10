@@ -7,7 +7,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-	<Grid Background="{ThemeResource SystemChromeLowColor}">
-		<local:Board/>
+	<Grid x:Name="Holder" Background="{ThemeResource SystemChromeLowColor}">
+		<local:Board x:Name="PlayBoard"/>
+		<Image x:Name="FreezeFrame" Visibility="Collapsed"/>
 	</Grid>
 </Page>
