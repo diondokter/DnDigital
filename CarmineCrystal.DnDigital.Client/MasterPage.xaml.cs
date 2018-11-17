@@ -20,6 +20,7 @@ using CarmineCrystal.DnDigital.Messages;
 using System.Reflection;
 using CarmineCrystal.DnDigital.Datamodels;
 using Windows.UI.Core;
+using Windows.UI.Popups;
 
 namespace CarmineCrystal.DnDigital.Client
 {
@@ -60,17 +61,24 @@ namespace CarmineCrystal.DnDigital.Client
 		{
 			await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
 			{
-				MemoryStream Buffer = new MemoryStream();
-				await PlayBoard.GetDrawCanvas().InkPresenter.StrokeContainer.SaveAsync(Buffer.AsOutputStream());
-
-				target.Send(new BoardLinesMessage() { Data = Buffer.ToArray() });
-
-				foreach (Character c in PlayBoard.GetCharacters())
+				try
 				{
-					target.Send(new AddCharacterMessage() { NewCharacter = c });
-				}
+					MemoryStream Buffer = new MemoryStream();
+					await PlayBoard.GetDrawCanvas().InkPresenter.StrokeContainer.SaveAsync(Buffer.AsOutputStream());
 
-				target.Send(new CameraMovedMessage() { HorizontalOffset = PlayBoard.ScrollerHorizontalOffset, VerticalOffset = PlayBoard.ScrollerVerticalOffset, ZoomFactor = PlayBoard.ScrollerZoomFactor }); 
+					target.Send(new BoardLinesMessage() { Data = Buffer.ToArray() });
+
+					foreach (Character c in PlayBoard.GetCharacters())
+					{
+						target.Send(new AddCharacterMessage() { NewCharacter = c });
+					}
+
+					target.Send(new CameraMovedMessage() { HorizontalOffset = PlayBoard.ScrollerHorizontalOffset, VerticalOffset = PlayBoard.ScrollerVerticalOffset, ZoomFactor = PlayBoard.ScrollerZoomFactor });
+				}
+				catch (Exception e)
+				{
+					var _ = new MessageDialog(e.ToString(), "Error on client added").ShowAsync();
+				}
 			});
 		}
 
@@ -96,7 +104,7 @@ namespace CarmineCrystal.DnDigital.Client
 				MemoryStream Buffer = new MemoryStream();
 				await PlayBoard.GetDrawCanvas().InkPresenter.StrokeContainer.SaveAsync(Buffer.AsOutputStream());
 
-				NetworkServer.BroadCast(new BoardLinesMessage() { Data = Buffer.ToArray() });
+				NetworkServer.Broadcast(new BoardLinesMessage() { Data = Buffer.ToArray() });
 			});
 		}
 
@@ -107,18 +115,18 @@ namespace CarmineCrystal.DnDigital.Client
 				MemoryStream Buffer = new MemoryStream();
 				await PlayBoard.GetDrawCanvas().InkPresenter.StrokeContainer.SaveAsync(Buffer.AsOutputStream());
 
-				NetworkServer.BroadCast(new BoardLinesMessage() { Data = Buffer.ToArray() });
+				NetworkServer.Broadcast(new BoardLinesMessage() { Data = Buffer.ToArray() });
 			});
 		}
 
 		private void OnPlayBoardCharacterMoved(object sender, Character e)
 		{
-			NetworkServer.BroadCast(new MoveCharacterMessage() { TargetCharacter = e });
+			NetworkServer.Broadcast(new MoveCharacterMessage() { TargetCharacter = e });
 		}
 
 		private void OnPlayBoardCameraMoving(object sender, ScrollViewerViewChangingEventArgs e)
 		{
-			NetworkServer.BroadCast(new CameraMovedMessage() { HorizontalOffset = e.FinalView.HorizontalOffset, VerticalOffset = e.FinalView.VerticalOffset, ZoomFactor = e.FinalView.ZoomFactor });
+			NetworkServer.Broadcast(new CameraMovedMessage() { HorizontalOffset = e.FinalView.HorizontalOffset, VerticalOffset = e.FinalView.VerticalOffset, ZoomFactor = e.FinalView.ZoomFactor });
 		}
 
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -156,7 +164,7 @@ namespace CarmineCrystal.DnDigital.Client
 			{
 				Character NewCharacter = new Character() { Color = Dialog.SelectedColor, Name = Dialog.NameText, Position = PlayBoard.CameraPosition, Visuals = Dialog.UseCustomVisuals ? Dialog.VisualsPath : null, ID = Character.MaxID++, Size = new Datamodels.Rect(new Datamodels.Point(), Dialog.CharacterWidth - 0.2, Dialog.CharacterHeight - 0.2) };
 				PlayBoard.AddCharacter(NewCharacter);
-				NetworkServer.BroadCast(new AddCharacterMessage() { NewCharacter = NewCharacter });
+				NetworkServer.Broadcast(new AddCharacterMessage() { NewCharacter = NewCharacter });
 			}
 		}
 
@@ -170,13 +178,13 @@ namespace CarmineCrystal.DnDigital.Client
 			if (Result == ContentDialogResult.Primary)
 			{
 				PlayBoard.RemoveCharacter(Dialog.Selected);
-				NetworkServer.BroadCast(new RemoveCharacterMessage() { OldCharacter = Dialog.Selected });
+				NetworkServer.Broadcast(new RemoveCharacterMessage() { OldCharacter = Dialog.Selected });
 			}
 		}
 
 		private void OnFreezeSwitchToggled(object sender, RoutedEventArgs e)
 		{
-			NetworkServer.BroadCast(new FreezeMessage() { Freeze = ((ToggleSwitch)sender).IsOn });
+			NetworkServer.Broadcast(new FreezeMessage() { Freeze = ((ToggleSwitch)sender).IsOn });
 		}
 	}
 }

@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2020
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarmineCrystal.Networking", "Source\CarmineCrystal.Networking.csproj", "{C43C08AD-6E97-4DC7-95D4-C0D8E277FBE1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarmineCrystal.Networking.Tests", "Tests\CarmineCrystal.Networking.Tests.csproj", "{4BCE0669-AEF4-4323-A38C-51D08FE073C4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C43C08AD-6E97-4DC7-95D4-C0D8E277FBE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C43C08AD-6E97-4DC7-95D4-C0D8E277FBE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C43C08AD-6E97-4DC7-95D4-C0D8E277FBE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C43C08AD-6E97-4DC7-95D4-C0D8E277FBE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BCE0669-AEF4-4323-A38C-51D08FE073C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BCE0669-AEF4-4323-A38C-51D08FE073C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BCE0669-AEF4-4323-A38C-51D08FE073C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BCE0669-AEF4-4323-A38C-51D08FE073C4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5A768C2A-9E2D-470E-8E9A-B0E810D606EF}
+	EndGlobalSection
+EndGlobal

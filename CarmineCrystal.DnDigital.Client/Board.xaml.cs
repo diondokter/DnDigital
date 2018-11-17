@@ -186,7 +186,12 @@ namespace CarmineCrystal.DnDigital.Client
 
 		public async void MoveCharacter(Character character)
 		{
-			int Index = Characters.FindIndex(x => x.ID == character.ID);
+			if (character == null)
+			{
+				return;
+			}
+
+			int Index = Characters.FindIndex(x => x?.ID == character?.ID);
 			Characters[Index].Position = character.Position;
 
 			await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>

@@ -23,13 +23,7 @@ namespace CarmineCrystal.Networking
 
 	public abstract class GenericMessageProcessingModule<T> : MessageProcessingModule where T : Message
 	{
-		public override Type AcceptedType
-		{
-			get
-			{
-				return typeof(T);
-			}
-		}
+		public override Type AcceptedType => typeof(T);
 
 		protected override void Run(Message RunTarget, NetworkClient Sender)
 		{
@@ -41,13 +35,7 @@ namespace CarmineCrystal.Networking
 
 	public abstract class GenericRequestProcessingModule<T, U> : MessageProcessingModule where T : Request where U : Response
 	{
-		public override Type AcceptedType
-		{
-			get
-			{
-				return typeof(T);
-			}
-		}
+		public override Type AcceptedType => typeof(T);
 
 		protected override void Run(Message RunTarget, NetworkClient Sender)
 		{
@@ -62,11 +50,57 @@ namespace CarmineCrystal.Networking
 		protected abstract U Run(T RunTarget, NetworkClient Sender);
 	}
 
+	public abstract class GenericEncryptedRequestProcessingModule<T, U> : MessageProcessingModule where T : Request where U : Response
+	{
+		public override Type AcceptedType => typeof(T);
+
+		protected override void Run(Message RunTarget, NetworkClient Sender)
+		{
+			if (!Sender.HasEncryptedConnection)
+			{
+				// We don't have an encrypted connection, so we can't send anything encrypted back
+				return;
+			}
+
+			U Returned = Run((T)RunTarget, Sender);
+			if (Returned != null)
+			{
+				Returned.ID = ((Request)RunTarget).ID;
+				Sender.SendEncrypted(Returned);
+			}
+		}
+
+		protected abstract U Run(T RunTarget, NetworkClient Sender);
+	}
+
+	public abstract class GenericAuthenticatedRequestProcessingModule<T, U> : MessageProcessingModule where T : Request where U : Response
+	{
+		public override Type AcceptedType => typeof(T);
+
+		protected override void Run(Message RunTarget, NetworkClient Sender)
+		{
+			if (!Sender.IsRemoteClientAuthenticated)
+			{
+				// We don't have an authenticated remote client, so we won't send anything back
+				return;
+			}
+
+			U Returned = Run((T)RunTarget, Sender);
+			if (Returned != null)
+			{
+				Returned.ID = ((Request)RunTarget).ID;
+				Sender.SendEncrypted(Returned);
+			}
+		}
+
+		protected abstract U Run(T RunTarget, NetworkClient Sender);
+	}
+
 	public class DelegateMessageProcessingModule<T> : GenericMessageProcessingModule<T> where T : Message
 	{
-		private Action<T,NetworkClient> Processor;
+		private Action<T, NetworkClient> Processor;
 
-		public DelegateMessageProcessingModule(Action<T,NetworkClient> Processor)
+		public DelegateMessageProcessingModule(Action<T, NetworkClient> Processor)
 		{
 			this.Processor = Processor;
 		}

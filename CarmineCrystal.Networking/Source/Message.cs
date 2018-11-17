@@ -25,7 +25,7 @@ namespace CarmineCrystal.Networking
 			List<Assembly> TargetAssemblies = AdditionalAssemblies.ToList();
 			TargetAssemblies.Add(typeof(Message).GetTypeInfo().Assembly);
 
-			TypeInfo[] MessageTypes = TargetAssemblies.SelectMany(x => x.ExportedTypes).Select(x => x.GetTypeInfo()).Where(x => x.IsSubclassOf(typeof(Message))).ToArray();
+			TypeInfo[] MessageTypes = TargetAssemblies.SelectMany(x => x.DefinedTypes).Select(x => x.GetTypeInfo()).Where(x => x.IsSubclassOf(typeof(Message))).ToArray();
 
 			Dictionary<Type, int> SubTypeCount = new Dictionary<Type, int>();
 

@@ -37,7 +37,7 @@ namespace CarmineCrystal.DnDigital.Client
 			base.OnNavigatedTo(e);
 
 			Message.Initialize(typeof(AddCharacterMessage).GetTypeInfo().Assembly);
-			Server = new NetworkClient(((ClientPageParameters)e.Parameter).Hostname, 5000,
+			Server = new NetworkClient(((ClientPageParameters)e.Parameter).Hostname, 5000, null,
 
 				new DelegateMessageProcessingModule<AddCharacterMessage>((message, server) => PlayBoard.AddCharacter(message.NewCharacter)),
 				new DelegateMessageProcessingModule<MoveCharacterMessage>((message, server) => PlayBoard.MoveCharacter(message.TargetCharacter)),
