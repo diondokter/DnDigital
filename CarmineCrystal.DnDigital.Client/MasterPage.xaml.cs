@@ -20,6 +20,7 @@ using CarmineCrystal.DnDigital.Messages;
 using System.Reflection;
 using CarmineCrystal.DnDigital.Datamodels;
 using Windows.UI.Core;
+using Windows.UI.Popups;
 
 namespace CarmineCrystal.DnDigital.Client
 {
@@ -60,17 +61,24 @@ namespace CarmineCrystal.DnDigital.Client
 		{
 			await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
 			{
-				MemoryStream Buffer = new MemoryStream();
-				await PlayBoard.GetDrawCanvas().InkPresenter.StrokeContainer.SaveAsync(Buffer.AsOutputStream());
-
-				target.Send(new BoardLinesMessage() { Data = Buffer.ToArray() });
-
-				foreach (Character c in PlayBoard.GetCharacters())
+				try
 				{
-					target.Send(new AddCharacterMessage() { NewCharacter = c });
-				}
+					MemoryStream Buffer = new MemoryStream();
+					await PlayBoard.GetDrawCanvas().InkPresenter.StrokeContainer.SaveAsync(Buffer.AsOutputStream());
 
-				target.Send(new CameraMovedMessage() { HorizontalOffset = PlayBoard.ScrollerHorizontalOffset, VerticalOffset = PlayBoard.ScrollerVerticalOffset, ZoomFactor = PlayBoard.ScrollerZoomFactor }); 
+					target.Send(new BoardLinesMessage() { Data = Buffer.ToArray() });
+
+					foreach (Character c in PlayBoard.GetCharacters())
+					{
+						target.Send(new AddCharacterMessage() { NewCharacter = c });
+					}
+
+					target.Send(new CameraMovedMessage() { HorizontalOffset = PlayBoard.ScrollerHorizontalOffset, VerticalOffset = PlayBoard.ScrollerVerticalOffset, ZoomFactor = PlayBoard.ScrollerZoomFactor });
+				}
+				catch (Exception e)
+				{
+					var _ = new MessageDialog(e.ToString(), "Error in client add.").ShowAsync();
+				}
 			});
 		}
 

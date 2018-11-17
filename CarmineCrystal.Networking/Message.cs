@@ -72,17 +72,25 @@ namespace CarmineCrystal.Networking
 
 		public static T DeserializeFrom<T>(Stream TargetStream) where T:Message
 		{
-			if (!IsInitialized)
+			try
 			{
-				throw new NotSupportedException($"The message system has not been initialized yet. Call {nameof(Message)}.{nameof(Initialize)} first.");
-			}
+				if (!IsInitialized)
+				{
+					throw new NotSupportedException($"The message system has not been initialized yet. Call {nameof(Message)}.{nameof(Initialize)} first.");
+				}
 
-			if (!TargetStream.CanRead)
+				if (!TargetStream.CanRead)
+				{
+					throw new NotSupportedException($"{nameof(TargetStream)} can't be read from. Provide a read enabled stream.");
+				}
+
+				return Serializer.DeserializeWithLengthPrefix<T>(TargetStream, PrefixStyle.Base128);
+			}
+			catch (Exception e)
 			{
-				throw new NotSupportedException($"{nameof(TargetStream)} can't be read from. Provide a read enabled stream.");
+				System.Diagnostics.Debug.WriteLine(e);
+				return null;
 			}
-
-			return Serializer.DeserializeWithLengthPrefix<T>(TargetStream, PrefixStyle.Base128);
 		}
 	}
 }

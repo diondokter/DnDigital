@@ -11,15 +11,15 @@
     <AssemblyName>CarmineCrystal.DnDigital.Client</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
-    <TargetPlatformVersion>10.0.16299.0</TargetPlatformVersion>
+    <TargetPlatformVersion>10.0.17134.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.14393.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WindowsXamlEnableOverview>true</WindowsXamlEnableOverview>
     <PackageCertificateKeyFile>CarmineCrystal.DnDigital.Client_TemporaryKey.pfx</PackageCertificateKeyFile>
-    <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
-    <AppxPackageDir>C:\Users\diond\Desktop\New folder\</AppxPackageDir>
+    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+    <AppxPackageDir>E:\DnD\</AppxPackageDir>
     <AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
     <AppxBundle>Auto</AppxBundle>
     <AppxBundlePlatforms>x86</AppxBundlePlatforms>
@@ -233,6 +233,7 @@
     <Content Include="Assets\Objects\Ships\Phoenix Visuals Outside.png" />
     <Content Include="Assets\Objects\Ships\Transporter Visuals Inside.png" />
     <Content Include="Assets\Objects\Ships\Transporter Visuals Outside.png" />
+    <Content Include="Assets\Objects\Vehicles\cart-200.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
